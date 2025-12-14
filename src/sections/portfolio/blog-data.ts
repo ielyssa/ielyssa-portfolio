@@ -46,7 +46,7 @@ The journey of building ATAS has taught me that age is just a number - passion, 
     coverImage: '/assets/blog/atas-journey.jpg',
     category: 'Entrepreneurship',
     readTime: '5 min read',
-    publishDate: 'Jan 15, 2025',
+    publishDate: 'Dec 13, 2025',
     author: {
       name: 'IRANKUNDA Elyssa',
       avatar: '/assets/profile-picture.png',
@@ -78,7 +78,7 @@ We've seen firsthand how these technologies improve learning outcomes and help t
     coverImage: '/assets/blog/ml-education.png',
     category: 'Machine Learning',
     readTime: '4 min read',
-    publishDate: 'Jan 10, 2025',
+    publishDate: 'Dec 03, 2025',
     author: {
       name: 'IRANKUNDA Elyssa',
       avatar: '/assets/profile-picture.png',
@@ -111,10 +111,10 @@ From accessibility tools for visually impaired users to educational content crea
 
 This is just the beginning. We're working on expanding the model's capabilities and exploring other language technologies.
     `,
-    coverImage: '/assets/blog/kinyarwanda-tts.jpg',
+    coverImage: '/assets/blog/kinyarwanda-tts.png',
     category: 'AI Technology',
     readTime: '6 min read',
-    publishDate: 'Jan 5, 2025',
+    publishDate: 'Nov 11, 2025',
     author: {
       name: 'IRANKUNDA Elyssa',
       avatar: '/assets/profile-picture.png',
@@ -157,7 +157,7 @@ Connect with other data scientists, attend meetups, and participate in competiti
     coverImage: '/assets/blog/data-science-skills.jpg',
     category: 'Data Science',
     readTime: '7 min read',
-    publishDate: 'Dec 28, 2024',
+    publishDate: 'Oct 28, 2025',
     author: {
       name: 'IRANKUNDA Elyssa',
       avatar: '/assets/profile-picture.png',

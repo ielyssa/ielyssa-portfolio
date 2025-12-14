@@ -13,7 +13,7 @@ import Typography from '@mui/material/Typography';
 import IconButton from '@mui/material/IconButton';
 import Skeleton from '@mui/material/Skeleton';
 import CardContent from '@mui/material/CardContent';
-import { Tooltip } from '@mui/material';
+import { Tooltip, Link } from '@mui/material';
 import { alpha, useTheme } from '@mui/material/styles';
 
 import { Iconify } from 'src/components/iconify';
@@ -53,20 +53,25 @@ const ATAS_PROJECTS = [
     logo: '/assets/academiaplus-logo.png',
     color: '#1877F2',
     features: ['AI Tutors', 'Anti-Cheating', 'Smart Analytics'],
+    link: 'https://academiaplus.net',
   },
   {
     title: 'EduBridge',
     description: 'Predictive AI platform analyzing student performance to detect dropout risks early.',
     icon: 'carbon:chart-treemap',
+    logo: '/assets/edubridge-logo.png',
     color: '#8E33FF',
     features: ['Predictive Modeling', 'Early Alerts', 'Data-Driven'],
+    link: '',
   },
   {
     title: 'Kinyarwanda TTS',
     description: 'Advanced AI model bringing natural voice technology to the Kinyarwanda language.',
     icon: 'carbon:volume-up',
+    logo: '/assets/speech-to-speech-atas-preview.png',
     color: '#00B8D9',
     features: ['Natural Voice', 'Accessibility', 'Language Preservation'],
+    link: '',
   },
 ];
 
@@ -82,8 +87,8 @@ const CONTACT_INFO = [
   {
     icon: 'mdi:phone',
     label: 'Phone',
-    value: '+250 798 263 057',
-    link: 'tel:+15551234567',
+    value: '+250 788 235 574',
+    link: 'tel:+250788235574',
     color: 'success'
   },
   {
@@ -585,118 +590,251 @@ export function PortfolioView() {
             <Grid container spacing={3}>
               {ATAS_PROJECTS.map((project, index) => (
                 <Grid key={project.title} size={{ xs: 12, md: 4 }}>
-                  <Card
-                    sx={{
-                      height: '100%',
-                      display: 'flex',
-                      flexDirection: 'column',
-                      position: 'relative',
-                      overflow: 'hidden',
-                      transition: 'all 0.3s ease',
-                      border: (thm) => `1px solid ${thm.palette.divider}`,
-                      animation: `fadeInUp 0.6s ease-out ${index * 0.15}s both`,
-                      '@keyframes fadeInUp': {
-                        from: { opacity: 0, transform: 'translateY(30px)' },
-                        to: { opacity: 1, transform: 'translateY(0)' },
-                      },
-                      '&:hover': {
-                        transform: 'translateY(-8px)',
-                        boxShadow: (thm) => thm.customShadows.z20,
-                        '& .project-icon': {
-                          transform: 'scale(1.1) rotate(5deg)',
-                        },
-                      },
-                    }}
-                  >
-                    {/* Gradient Background */}
-                    <Box
+                  {project.link ? (
+                    <Link
+                      href={project.link}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      underline="none"
                       sx={{
-                        position: 'absolute',
-                        top: 0,
-                        right: 0,
-                        width: '100%',
-                        height: 120,
-                        background: `linear-gradient(135deg, ${alpha(project.color, 0.08)} 0%, transparent 100%)`,
-                        pointerEvents: 'none',
+                        display: 'block',
+                        height: '100%',
+                        '&:hover': {
+                          textDecoration: 'none',
+                        },
                       }}
-                    />
-
-                    <Box sx={{ p: 4, position: 'relative', zIndex: 1, flexGrow: 1, display: 'flex', flexDirection: 'column' }}>
-                      {/* Icon/Logo Container */}
-                      <Box
-                        className="project-icon"
+                    >
+                      <Card
                         sx={{
-                          width: 70,
-                          height: 70,
-                          borderRadius: 3,
+                          height: '100%',
                           display: 'flex',
-                          alignItems: 'center',
-                          justifyContent: 'center',
-                          bgcolor: alpha(project.color, 0.1),
-                          mb: 3,
-                          transition: 'transform 0.3s ease',
-                          overflow: 'hidden', // For logo images
+                          flexDirection: 'column',
+                          position: 'relative',
+                          overflow: 'hidden',
+                          transition: 'all 0.3s ease',
+                          border: (thm) => `1px solid ${thm.palette.divider}`,
+                          animation: `fadeInUp 0.6s ease-out ${index * 0.15}s both`,
+                          '@keyframes fadeInUp': {
+                            from: { opacity: 0, transform: 'translateY(30px)' },
+                            to: { opacity: 1, transform: 'translateY(0)' },
+                          },
+                          '&:hover': {
+                            transform: 'translateY(-8px)',
+                            boxShadow: (thm) => thm.customShadows.z20,
+                            '& .project-icon': {
+                              transform: 'scale(1.1) rotate(5deg)',
+                            },
+                            // Add cursor pointer on hover
+                            cursor: 'pointer',
+                          },
                         }}
                       >
-                        {project.logo ? (
-                          <img
-                            src={project.logo}
-                            alt={`${project.title} logo`}
-                            style={{
-                              width: '100%',
-                              height: '100%',
-                              objectFit: 'contain',
-                              padding: '8px', // Add some padding for logos
+                        {/* Gradient Background */}
+                        <Box
+                          sx={{
+                            position: 'absolute',
+                            top: 0,
+                            right: 0,
+                            width: '100%',
+                            height: 120,
+                            background: `linear-gradient(135deg, ${alpha(project.color, 0.08)} 0%, transparent 100%)`,
+                            pointerEvents: 'none',
+                          }}
+                        />
+
+                        <Box sx={{ p: 4, position: 'relative', zIndex: 1, flexGrow: 1, display: 'flex', flexDirection: 'column' }}>
+                          {/* Icon/Logo Container */}
+                          <Box
+                            className="project-icon"
+                            sx={{
+                              width: 70,
+                              height: 70,
+                              borderRadius: 3,
+                              display: 'flex',
+                              alignItems: 'center',
+                              justifyContent: 'center',
+                              bgcolor: alpha(project.color, 0.1),
+                              mb: 3,
+                              transition: 'transform 0.3s ease',
+                              overflow: 'hidden',
                             }}
-                          />
-                        ) : (
-                          <Iconify icon={project.icon} width={36} sx={{ color: project.color }} />
-                        )}
+                          >
+                            {project.logo ? (
+                              <img
+                                src={project.logo}
+                                alt={`${project.title} logo`}
+                                style={{
+                                  width: '100%',
+                                  height: '100%',
+                                  objectFit: 'contain',
+                                  padding: '8px',
+                                }}
+                              />
+                            ) : (
+                              <Iconify icon={project.icon} width={36} sx={{ color: project.color }} />
+                            )}
+                          </Box>
+
+                          {/* Title */}
+                          <Typography variant="h5" sx={{ mb: 2, fontWeight: 700 }}>
+                            {project.title}
+                          </Typography>
+
+                          {/* Description */}
+                          <Typography
+                            variant="body2"
+                            color="text.secondary"
+                            sx={{ mb: 3, flexGrow: 1, lineHeight: 1.7 }}
+                          >
+                            {project.description}
+                          </Typography>
+
+                          {/* Features */}
+                          <Stack direction="row" spacing={1} flexWrap="wrap" useFlexGap>
+                            {project.features.map((feature) => (
+                              <Chip
+                                key={feature}
+                                label={feature}
+                                size="small"
+                                sx={{
+                                  bgcolor: (thm) => alpha(project.color, 0.08),
+                                  color: project.color,
+                                  fontWeight: 500,
+                                  border: `1px solid ${alpha(project.color, 0.2)}`,
+                                }}
+                              />
+                            ))}
+                          </Stack>
+                        </Box>
+
+                        <Box
+                          sx={{
+                            position: 'absolute',
+                            bottom: 0,
+                            left: 0,
+                            right: 0,
+                            height: 4,
+                            background: `linear-gradient(90deg, ${project.color} 0%, transparent 100%)`,
+                          }}
+                        />
+                      </Card>
+                    </Link>
+                  ) : (
+                    <Card
+                      sx={{
+                        height: '100%',
+                        display: 'flex',
+                        flexDirection: 'column',
+                        position: 'relative',
+                        overflow: 'hidden',
+                        transition: 'all 0.3s ease',
+                        border: (thm) => `1px solid ${thm.palette.divider}`,
+                        animation: `fadeInUp 0.6s ease-out ${index * 0.15}s both`,
+                        '@keyframes fadeInUp': {
+                          from: { opacity: 0, transform: 'translateY(30px)' },
+                          to: { opacity: 1, transform: 'translateY(0)' },
+                        },
+                        '&:hover': {
+                          transform: 'translateY(-8px)',
+                          boxShadow: (thm) => thm.customShadows.z20,
+                          '& .project-icon': {
+                            transform: 'scale(1.1) rotate(5deg)',
+                          },
+                          // Add cursor pointer on hover
+                          cursor: 'pointer',
+                        },
+                      }}
+                    >
+                      {/* Gradient Background */}
+                      <Box
+                        sx={{
+                          position: 'absolute',
+                          top: 0,
+                          right: 0,
+                          width: '100%',
+                          height: 120,
+                          background: `linear-gradient(135deg, ${alpha(project.color, 0.08)} 0%, transparent 100%)`,
+                          pointerEvents: 'none',
+                        }}
+                      />
+
+                      <Box sx={{ p: 4, position: 'relative', zIndex: 1, flexGrow: 1, display: 'flex', flexDirection: 'column' }}>
+                        {/* Icon/Logo Container */}
+                        <Box
+                          className="project-icon"
+                          sx={{
+                            width: 70,
+                            height: 70,
+                            borderRadius: 3,
+                            display: 'flex',
+                            alignItems: 'center',
+                            justifyContent: 'center',
+                            bgcolor: alpha(project.color, 0.1),
+                            mb: 3,
+                            transition: 'transform 0.3s ease',
+                            overflow: 'hidden',
+                          }}
+                        >
+                          {project.logo ? (
+                            <img
+                              src={project.logo}
+                              alt={`${project.title} logo`}
+                              style={{
+                                width: '100%',
+                                height: '100%',
+                                objectFit: 'contain',
+                                padding: '8px',
+                              }}
+                            />
+                          ) : (
+                            <Iconify icon={project.icon} width={36} sx={{ color: project.color }} />
+                          )}
+                        </Box>
+
+                        {/* Title */}
+                        <Typography variant="h5" sx={{ mb: 2, fontWeight: 700 }}>
+                          {project.title}
+                        </Typography>
+
+                        {/* Description */}
+                        <Typography
+                          variant="body2"
+                          color="text.secondary"
+                          sx={{ mb: 3, flexGrow: 1, lineHeight: 1.7 }}
+                        >
+                          {project.description}
+                        </Typography>
+
+                        {/* Features */}
+                        <Stack direction="row" spacing={1} flexWrap="wrap" useFlexGap>
+                          {project.features.map((feature) => (
+                            <Chip
+                              key={feature}
+                              label={feature}
+                              size="small"
+                              sx={{
+                                bgcolor: (thm) => alpha(project.color, 0.08),
+                                color: project.color,
+                                fontWeight: 500,
+                                border: `1px solid ${alpha(project.color, 0.2)}`,
+                              }}
+                            />
+                          ))}
+                        </Stack>
                       </Box>
 
-                      {/* Title */}
-                      <Typography variant="h5" sx={{ mb: 2, fontWeight: 700 }}>
-                        {project.title}
-                      </Typography>
-
-                      {/* Description */}
-                      <Typography
-                        variant="body2"
-                        color="text.secondary"
-                        sx={{ mb: 3, flexGrow: 1, lineHeight: 1.7 }}
-                      >
-                        {project.description}
-                      </Typography>
-
-                      {/* Features */}
-                      <Stack direction="row" spacing={1} flexWrap="wrap" useFlexGap>
-                        {project.features.map((feature) => (
-                          <Chip
-                            key={feature}
-                            label={feature}
-                            size="small"
-                            sx={{
-                              bgcolor: (thm) => alpha(project.color, 0.08),
-                              color: project.color,
-                              fontWeight: 500,
-                              border: `1px solid ${alpha(project.color, 0.2)}`,
-                            }}
-                          />
-                        ))}
-                      </Stack>
-                    </Box>
-
-                    <Box
-                      sx={{
-                        position: 'absolute',
-                        bottom: 0,
-                        left: 0,
-                        right: 0,
-                        height: 4,
-                        background: `linear-gradient(90deg, ${project.color} 0%, transparent 100%)`,
-                      }}
-                    />
-                  </Card>
+                      <Box
+                        sx={{
+                          position: 'absolute',
+                          bottom: 0,
+                          left: 0,
+                          right: 0,
+                          height: 4,
+                          background: `linear-gradient(90deg, ${project.color} 0%, transparent 100%)`,
+                        }}
+                      />
+                    </Card>
+                  )}
                 </Grid>
               ))}
             </Grid>
@@ -1065,7 +1203,7 @@ export function PortfolioView() {
                     icon: 'mdi:github',
                     color: 'text.primary',
                     label: 'GitHub',
-                    link: 'https://github.com/ely-pro'
+                    link: 'https://github.com/ielyssa'
                   },
                   {
                     icon: 'mdi:twitter',
