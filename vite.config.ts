@@ -31,6 +31,21 @@ export default defineConfig({
       },
     ],
   },
+  build: {
+    chunkSizeWarningLimit: 700,
+    rollupOptions: {
+      output: {
+        manualChunks(id) {
+          if (!id.includes('node_modules')) return undefined;
+          if (id.includes('@mui')) return 'vendor-mui';
+          if (id.includes('react-router')) return 'vendor-router';
+          if (id.includes('@iconify')) return 'vendor-iconify';
+          if (id.includes('react') || id.includes('scheduler')) return 'vendor-react';
+          return 'vendor';
+        },
+      },
+    },
+  },
   server: { port: PORT, host: true },
   preview: { port: PORT, host: true },
 });

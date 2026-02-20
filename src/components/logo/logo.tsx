@@ -3,7 +3,7 @@ import type { LinkProps } from '@mui/material/Link';
 import { mergeClasses } from 'minimal-shared/utils';
 
 import Link from '@mui/material/Link';
-import { styled, useTheme } from '@mui/material/styles';
+import { styled } from '@mui/material/styles';
 
 import { RouterLink } from 'src/routes/components';
 
@@ -24,10 +24,6 @@ export function Logo({
   isSingle = true,
   ...other
 }: LogoProps) {
-  const theme = useTheme();
-
-  const TEXT_PRIMARY = theme.vars.palette.text.primary;
-
   const LOGO_SINGLE_PATH = '/android-chrome-512x512.png'; 
   const LOGO_FULL_PATH =  '/android-chrome-512x512.png'; 
 

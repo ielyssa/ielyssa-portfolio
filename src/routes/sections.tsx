@@ -12,8 +12,25 @@ import { PortfolioLayout } from 'src/layouts/portfolio';
 
 // ----------------------------------------------------------------------
 
-export const PortfolioPage = lazy(() => import('src/pages/portfolio'));
-export const BlogDetailPage = lazy(() => import('src/pages/blog-detail'));
+const loadPortfolioPage = () => import('src/pages/portfolio');
+const loadBlogDetailPage = () => import('src/pages/blog-detail');
+const loadProjectDetailPage = () => import('src/pages/project-detail');
+const loadAtasPage = () => import('src/pages/atas');
+const loadSpeakingPage = () => import('src/pages/speaking');
+
+export const prefetchRouteModules = {
+  portfolio: loadPortfolioPage,
+  blogDetail: loadBlogDetailPage,
+  projectDetail: loadProjectDetailPage,
+  atas: loadAtasPage,
+  speaking: loadSpeakingPage,
+};
+
+export const PortfolioPage = lazy(loadPortfolioPage);
+export const BlogDetailPage = lazy(loadBlogDetailPage);
+export const ProjectDetailPage = lazy(loadProjectDetailPage);
+export const AtasPage = lazy(loadAtasPage);
+export const SpeakingPage = lazy(loadSpeakingPage);
 
 const renderFallback = () => (
   <Box
@@ -53,6 +70,36 @@ export const routesSection: RouteObject[] = [
       <PortfolioLayout>
         <Suspense fallback={renderFallback()}>
           <BlogDetailPage />
+        </Suspense>
+      </PortfolioLayout>
+    ),
+  },
+  {
+    path: '/projects/:slug',
+    element: (
+      <PortfolioLayout>
+        <Suspense fallback={renderFallback()}>
+          <ProjectDetailPage />
+        </Suspense>
+      </PortfolioLayout>
+    ),
+  },
+  {
+    path: '/atas',
+    element: (
+      <PortfolioLayout>
+        <Suspense fallback={renderFallback()}>
+          <AtasPage />
+        </Suspense>
+      </PortfolioLayout>
+    ),
+  },
+  {
+    path: '/speaking',
+    element: (
+      <PortfolioLayout>
+        <Suspense fallback={renderFallback()}>
+          <SpeakingPage />
         </Suspense>
       </PortfolioLayout>
     ),

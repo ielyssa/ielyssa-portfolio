@@ -12,6 +12,7 @@ import Typography from '@mui/material/Typography';
 import Skeleton from '@mui/material/Skeleton';
 import { alpha } from '@mui/material/styles';
 import Divider from '@mui/material/Divider';
+import useMediaQuery from '@mui/material/useMediaQuery';
 
 import { Iconify } from 'src/components/iconify';
 
@@ -20,6 +21,7 @@ import { BLOG_POSTS, type BlogPost } from './blog-data';
 // ----------------------------------------------------------------------
 
 export function BlogDetailView() {
+  const prefersReducedMotion = useMediaQuery('(prefers-reduced-motion: reduce)');
   const { id } = useParams();
   const navigate = useNavigate();
   const [loading, setLoading] = useState(true);
@@ -62,8 +64,23 @@ export function BlogDetailView() {
     );
   }
 
+  const articleSchema = {
+    '@context': 'https://schema.org',
+    '@type': 'BlogPosting',
+    headline: post.title,
+    description: post.excerpt,
+    datePublished: post.publishDate,
+    dateModified: post.updatedDate || post.publishDate,
+    author: {
+      '@type': 'Person',
+      name: post.author.name,
+    },
+    keywords: post.tags.join(', '),
+  };
+
   return (
     <Box sx={{ py: { xs: 8, md: 10 } }}>
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(articleSchema) }} />
       <Container maxWidth="md">
         {/* Back Button */}
         <Button
@@ -71,7 +88,7 @@ export function BlogDetailView() {
           onClick={() => navigate('/')}
           sx={{
             mb: 4,
-            animation: 'fadeInLeft 0.5s ease-out',
+            animation: prefersReducedMotion ? 'none' : 'fadeInLeft 0.5s ease-out',
             '@keyframes fadeInLeft': {
               from: { opacity: 0, transform: 'translateX(-20px)' },
               to: { opacity: 1, transform: 'translateX(0)' },
@@ -88,7 +105,7 @@ export function BlogDetailView() {
           sx={{
             mb: 3,
             fontWeight: 800,
-            animation: 'fadeInUp 0.6s ease-out',
+            animation: prefersReducedMotion ? 'none' : 'fadeInUp 0.6s ease-out',
             '@keyframes fadeInUp': {
               from: { opacity: 0, transform: 'translateY(20px)' },
               to: { opacity: 1, transform: 'translateY(0)' },
@@ -105,7 +122,7 @@ export function BlogDetailView() {
           alignItems={{ xs: 'flex-start', sm: 'center' }}
           sx={{
             mb: 4,
-            animation: 'fadeInUp 0.7s ease-out',
+            animation: prefersReducedMotion ? 'none' : 'fadeInUp 0.7s ease-out',
           }}
         >
           <Stack direction="row" spacing={2} alignItems="center">
@@ -116,16 +133,26 @@ export function BlogDetailView() {
               <Typography variant="subtitle1" sx={{ fontWeight: 600 }}>
                 {post.author.name}
               </Typography>
-              <Stack direction="row" spacing={1} alignItems="center">
+              <Stack direction="row" spacing={1} alignItems="center" flexWrap="wrap" useFlexGap>
                 <Typography variant="caption" color="text.secondary">
                   {post.publishDate}
                 </Typography>
                 <Typography variant="caption" color="text.secondary">
-                  •
+                  |
                 </Typography>
                 <Typography variant="caption" color="text.secondary">
                   {post.readTime}
                 </Typography>
+                {post.updatedDate && (
+                  <>
+                    <Typography variant="caption" color="text.secondary">
+                      |
+                    </Typography>
+                    <Typography variant="caption" color="text.secondary">
+                      Updated {post.updatedDate}
+                    </Typography>
+                  </>
+                )}
               </Stack>
             </Box>
           </Stack>
@@ -140,7 +167,7 @@ export function BlogDetailView() {
           sx={{
             mb: 5,
             overflow: 'hidden',
-            animation: 'zoomIn 0.8s ease-out',
+            animation: prefersReducedMotion ? 'none' : 'zoomIn 0.8s ease-out',
             '@keyframes zoomIn': {
               from: { opacity: 0, transform: 'scale(0.95)' },
               to: { opacity: 1, transform: 'scale(1)' },
@@ -151,6 +178,9 @@ export function BlogDetailView() {
             component="img"
             src={post.coverImage}
             alt={post.title}
+            loading="eager"
+            decoding="async"
+            fetchPriority="high"
             sx={{
               width: '100%',
               height: { xs: 250, md: 400 },
@@ -175,7 +205,7 @@ export function BlogDetailView() {
         {/* Content */}
         <Box
           sx={{
-            animation: 'fadeIn 1s ease-out',
+            animation: prefersReducedMotion ? 'none' : 'fadeIn 1s ease-out',
             '& h1, & h2, & h3': {
               mt: 4,
               mb: 2,
@@ -259,6 +289,20 @@ export function BlogDetailView() {
             Tags
           </Typography>
           <Stack direction="row" spacing={1} flexWrap="wrap" useFlexGap>
+            {post.focus && (
+              <Chip
+                label={`Focus: ${post.focus}`}
+                size="small"
+                color="secondary"
+                sx={{
+                  transition: 'all 0.3s ease',
+                  '&:hover': {
+                    transform: 'translateY(-2px)',
+                    boxShadow: (theme) => theme.customShadows.z8,
+                  },
+                }}
+              />
+            )}
             {post.tags.map((tag) => (
               <Chip
                 key={tag}

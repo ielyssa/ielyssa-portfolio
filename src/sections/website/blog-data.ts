@@ -7,6 +7,8 @@ export type BlogPost = {
   category: string;
   readTime: string;
   publishDate: string;
+  updatedDate?: string;
+  focus?: string;
   author: {
     name: string;
     avatar: string;
@@ -43,10 +45,12 @@ ATAS is just getting started. We're expanding our projects, growing our team, an
 
 The journey of building ATAS has taught me that age is just a number - passion, dedication, and the right team can make anything possible.
     `,
-    coverImage: '/assets/blog/atas-journey.jpg',
+    coverImage: '/assets/images/blog/atas-journey.jpg',
     category: 'Entrepreneurship',
     readTime: '5 min read',
     publishDate: 'Dec 13, 2025',
+    updatedDate: 'Jan 08, 2026',
+    focus: 'Product Strategy',
     author: {
       name: 'IRANKUNDA Elyssa',
       avatar: '/assets/profile-picture.png',
@@ -75,10 +79,12 @@ Our EduBridge project uses ML to predict student dropout risks early, allowing i
 
 We've seen firsthand how these technologies improve learning outcomes and help teachers focus on what they do best - teaching.
     `,
-    coverImage: '/assets/blog/ml-education.png',
+    coverImage: '/assets/images/blog/ml-education.png',
     category: 'Machine Learning',
     readTime: '4 min read',
     publishDate: 'Dec 03, 2025',
+    updatedDate: 'Jan 16, 2026',
+    focus: 'Education AI',
     author: {
       name: 'IRANKUNDA Elyssa',
       avatar: '/assets/profile-picture.png',
@@ -111,10 +117,12 @@ From accessibility tools for visually impaired users to educational content crea
 
 This is just the beginning. We're working on expanding the model's capabilities and exploring other language technologies.
     `,
-    coverImage: '/assets/blog/kinyarwanda-tts.png',
+    coverImage: '/assets/images/blog/kinyarwanda-tts.png',
     category: 'AI Technology',
     readTime: '6 min read',
     publishDate: 'Nov 11, 2025',
+    updatedDate: 'Jan 02, 2026',
+    focus: 'Language AI',
     author: {
       name: 'IRANKUNDA Elyssa',
       avatar: '/assets/profile-picture.png',
@@ -154,10 +162,12 @@ Work on real projects. Whether it's analyzing local data or building solutions f
 
 Connect with other data scientists, attend meetups, and participate in competitions. The African data science community is growing and welcoming.
     `,
-    coverImage: '/assets/blog/data-science-skills.jpg',
+    coverImage: '/assets/images/blog/data-science-skills.jpg',
     category: 'Data Science',
     readTime: '7 min read',
     publishDate: 'Oct 28, 2025',
+    updatedDate: 'Dec 22, 2025',
+    focus: 'Career Development',
     author: {
       name: 'IRANKUNDA Elyssa',
       avatar: '/assets/profile-picture.png',
